@@ -152,6 +152,15 @@ def quality_checks(conn, strict):
         (f"quarantine rate (max {max_q:.0%})",
          "SELECT COALESCE(COUNT_IF(ARRAY_SIZE(reasons) > 0) / NULLIF(COUNT(*), 0), 0) FROM silver.orders_checked",
          lambda v: float(v) <= max_q, "warn"),
+         (
+            "silver orders with future order_date",
+            "SELECT COUNT(*) FROM silver.orders_dedup "
+            "WHERE order_date > CURRENT_DATE()",
+            lambda v: v == 0,
+            "fail",
+        ),
+
+
     ]
     problems = []
     for name, sql, ok, severity in checks:

@@ -26,6 +26,16 @@ WEB_ORDERS = [
     {"order_id": "ORD-1006", "cust_email": "vikram@@mail", "cust_name": "Vikram",
      "order_date": "2026-09-04", "amount": 30, "currency": "EUR", "pincode": "99999",
      "updated_at": "2026-09-04 08:30:00"},
+     {
+        "order_id": "ORD-QUALITY-FAIL",
+        "cust_email": "meera@outlook.com",
+        "cust_name": "Meera S",
+        "order_date": "2099-01-01",
+        "amount": "500",
+        "currency": "INR",
+        "pincode": "400050",
+        "updated_at": "2099-01-01 10:00:00",
+    },
 ]
 
 # Mobile API: nested JSON, camelCase, day-first dates (rows 2 and 7)
@@ -44,6 +54,12 @@ CRM_TIER_EVENTS = [
     {"cust_id": "CUST-01", "email": "priya.r@gmail.com", "tier": "Gold", "effective_from": "2026-09-03"},
     {"cust_id": "CUST-02", "email": "arjun.k@yahoo.in", "tier": "Silver", "effective_from": "2024-01-15"},
     {"cust_id": "CUST-03", "email": "meera@outlook.com", "tier": "Platinum", "effective_from": "2022-11-01"},
+    {
+    "cust_id": "CUST-02",
+    "email": "arjun.k@yahoo.in",
+    "tier": "Gold",
+    "effective_from": "2026-08-15",
+},
 ]
 
 # Same shape as https://api.frankfurter.app/2026-09-01..2026-09-03?from=USD&to=INR

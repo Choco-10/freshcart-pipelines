@@ -48,7 +48,8 @@ SELECT *,
     IFF(pincode IS NULL OR NOT REGEXP_LIKE(pincode, '^[1-9][0-9]{5}$'), 'bad_pincode', NULL),
     IFF(order_date IS NULL, 'unparseable_date', NULL),
     IFF(updated_at IS NULL, 'unparseable_updated_at', NULL),
-    IFF(amount <= 0, 'non_positive_amount', NULL)          -- NULL amount is allowed (flagged below)
+    IFF(amount <= 0, 'non_positive_amount', NULL),          -- NULL amount is allowed (flagged below)
+    IFF(currency NOT IN ('INR', 'USD'), 'unsupported_currency', NULL)
   ) AS reasons
 FROM typed;
 
