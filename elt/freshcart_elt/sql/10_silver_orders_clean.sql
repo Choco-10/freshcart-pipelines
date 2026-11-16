@@ -16,7 +16,7 @@ WITH unified AS (
          raw:currency::STRING   AS currency,
          raw:pincode::STRING    AS pincode,
          raw:updated_at::STRING AS updated_at
-  FROM bronze.orders_raw WHERE source = 'web'
+  FROM bronze.orders_raw WHERE source IN ('web', 'rabbitmq')
   UNION ALL
   SELECT ingest_seq, source,
          raw:orderId::STRING, raw:customer.email::STRING, raw:customer.name::STRING,
