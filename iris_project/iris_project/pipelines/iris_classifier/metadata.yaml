@@ -10,12 +10,18 @@ blocks:
   type: transformer
   language: python
   upstream_blocks: [load_iris]
+  downstream_blocks: [check_iris]
+- name: check_iris
+  uuid: check_iris
+  type: transformer
+  language: python
+  upstream_blocks: [prepare_data]
   downstream_blocks: [train_model]
 - name: train_model
   uuid: train_model
   type: transformer
   language: python
-  upstream_blocks: [prepare_data]
+  upstream_blocks: [check_iris]
   downstream_blocks: [save_results, evaluate_model]
 - name: save_results
   uuid: save_results

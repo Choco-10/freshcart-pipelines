@@ -3,15 +3,18 @@ from __future__ import annotations
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-try:
-    from mage_ai.data_preparation.decorators import transformer
-    from mage_ai.data_preparation.decorators import test
-except ImportError:
-    def transformer(func):
-        return func
-
-    def test(func):
-        return func
+if "transformer" not in globals():
+    try:
+        from mage_ai.data_preparation.decorators import transformer
+    except ImportError:
+        def transformer(func):
+            return func
+if "test" not in globals():
+    try:
+        from mage_ai.data_preparation.decorators import test
+    except ImportError:
+        def test(func):
+            return func
 
 
 @transformer

@@ -1,8 +1,18 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-if 'transformer' not in globals():
-    from mage_ai.data_preparation.decorators import transformer
+if "transformer" not in globals():
+    try:
+        from mage_ai.data_preparation.decorators import transformer
+    except ImportError:
+        def transformer(func):
+            return func
+if "test" not in globals():
+    try:
+        from mage_ai.data_preparation.decorators import test
+    except ImportError:
+        def test(func):
+            return func
 
 
 @transformer
@@ -23,3 +33,8 @@ def evaluate(df, *args, **kwargs):
         ]
     })
     return metrics
+
+@test
+def test_metrics(output, *args) -> None:
+    assert len(output) == 4
+    assert output["value"].between(0, 1).all()
